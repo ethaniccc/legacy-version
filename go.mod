@@ -1,4 +1,4 @@
-module github.com/akmalfairuz/legacy-version
+module github.com/ethaniccc/legacy-version
 
 go 1.25.1
 
