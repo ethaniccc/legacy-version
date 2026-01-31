@@ -3,8 +3,8 @@ package legacyver
 import (
 	_ "embed"
 
-	"github.com/akmalfairuz/legacy-version/legacyver/proto"
-	"github.com/akmalfairuz/legacy-version/mapping"
+	"github.com/ethaniccc/legacy-version/legacyver/proto"
+	"github.com/ethaniccc/legacy-version/mapping"
 )
 
 const (

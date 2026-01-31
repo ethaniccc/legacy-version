@@ -4,8 +4,8 @@ import (
 	"bytes"
 	"fmt"
 
-	"github.com/akmalfairuz/legacy-version/mapping"
 	"github.com/df-mc/dragonfly/server/block/cube"
+	"github.com/ethaniccc/legacy-version/mapping"
 )
 
 // NetworkDecode decodes the network serialised data passed into a Chunk if successful. If not, the chunk

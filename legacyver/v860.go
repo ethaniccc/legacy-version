@@ -1,7 +1,7 @@
 package legacyver
 
 import (
-	"github.com/akmalfairuz/legacy-version/legacyver/proto"
+	"github.com/ethaniccc/legacy-version/legacyver/proto"
 )
 
 func New860(dragonflyMapping bool) *Protocol {

@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/akmalfairuz/legacy-version/internal/item"
-	"github.com/akmalfairuz/legacy-version/legacyver/proto"
-	"github.com/akmalfairuz/legacy-version/mapping"
 	"github.com/df-mc/dragonfly/server/world"
+	"github.com/ethaniccc/legacy-version/internal/item"
+	"github.com/ethaniccc/legacy-version/legacyver/proto"
+	"github.com/ethaniccc/legacy-version/mapping"
 	"github.com/samber/lo"
 	"github.com/sandertv/gophertunnel/minecraft"
 	"github.com/sandertv/gophertunnel/minecraft/protocol"

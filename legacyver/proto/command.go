@@ -3,7 +3,7 @@ package proto
 import (
 	"math"
 
-	"github.com/akmalfairuz/legacy-version/internal/typeconf"
+	"github.com/ethaniccc/legacy-version/internal/typeconf"
 	"github.com/sandertv/gophertunnel/minecraft/protocol"
 )
 
