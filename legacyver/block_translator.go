@@ -318,6 +318,10 @@ func (t *DefaultBlockTranslator) DowngradeChunk(input *chunk.Chunk) *chunk.Chunk
 		t.DowngradeSubChunk(sub)
 		downgraded.Sub()[i] = sub
 		i += 1
+
+		if i == len(downgraded.Sub()) {
+			break
+		}
 	}
 	i = 0
 	// Then downgrade the biome ids.
@@ -328,6 +332,10 @@ func (t *DefaultBlockTranslator) DowngradeChunk(input *chunk.Chunk) *chunk.Chunk
 		})
 		downgraded.BiomeSub()[i] = sub
 		i += 1
+
+		if i == len(downgraded.BiomeSub()) {
+			break
+		}
 	}
 
 	return downgraded

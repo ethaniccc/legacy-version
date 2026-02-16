@@ -21,7 +21,7 @@ type CameraInstruction struct {
 	// FieldOfView is a camera instruction that updates the field of view for the camera.
 	FieldOfView protocol.Optional[protocol.CameraInstructionFieldOfView]
 	// Spline is a camera instruction that creates a spline path for the camera to follow.
-	Spline protocol.Optional[protocol.CameraSplineInstruction]
+	Spline protocol.Optional[proto.CameraSplineInstruction]
 	// AttachToEntity is the entity ID to attach the camera to.
 	AttachToEntity protocol.Optional[int64]
 	// DetachFromEntity can be set to true to detach the camera from the current entity.

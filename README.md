@@ -5,6 +5,7 @@ A gophertunnel protocol interface implementation to support older Minecraft Bedr
 ## Supported Versions
 | Protocol ID | Version  | Support |
 |-------------|----------|---------|
+| 898         | 1.21.130 | ✅       |
 | 859         | 1.21.120 | ✅       |
 | 844         | 1.21.111 | ✅       |
 | 827         | 1.21.100 | ✅       |

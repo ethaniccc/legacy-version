@@ -3,6 +3,7 @@ package legacyver
 import (
 	_ "embed"
 
+	"github.com/ethaniccc/legacy-version/legacyver/proto"
 	"github.com/ethaniccc/legacy-version/mapping"
 )
 
@@ -14,21 +15,19 @@ const (
 )
 
 var (
-	//go:embed data/dragonfly_items.json
-	dragonflyLatestItemList []byte
 	//go:embed data/required_item_list_898.json
 	requiredItemList898 []byte
 	//go:embed data/block_states_898.nbt
 	blockStateData898 []byte
-
-	itemMappingLatestPocketMine = mapping.NewItemMapping(requiredItemList898, ItemVersion898)
-	itemMappingLatestDragonfly  = mapping.NewItemMapping(dragonflyLatestItemList, ItemVersion898)
-	blockMappingLatest          = mapping.NewBlockMapping(blockStateData898)
 )
 
-func itemMappingLatest(dragonflyMapping bool) mapping.Item {
-	if dragonflyMapping {
-		return itemMappingLatestDragonfly
+func New898(dragonflyMapping bool) *Protocol {
+	itemMapping := mapping.NewItemMapping(requiredItemList898, ItemVersion898)
+	blockTranslator := lookupOrCreateBlockTranslator(898, BlockVersion898, blockStateData898)
+	return &Protocol{
+		ver:             "1.21.130",
+		id:              proto.ID898,
+		blockTranslator: blockTranslator,
+		itemTranslator:  NewItemTranslator(itemMapping, itemMappingLatest(dragonflyMapping), blockTranslator.BlockMapping(), blockMappingLatest),
 	}
-	return itemMappingLatestPocketMine
 }

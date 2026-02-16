@@ -15,7 +15,7 @@ import (
 func NetworkDecode(air uint32, buf *bytes.Buffer, count int, oldFormat bool, r cube.Range, pse Encoding, pe PaletteEncoding, block mapping.Block, useBlockHashes bool) (*Chunk, error) {
 	var (
 		c        = New(air, r)
-		maxIndex = uint8((r.Height() >> 4) + 1)
+		maxIndex = uint8((r.Height() >> 4))
 	)
 	for i := range count {
 		index := uint8(i)
@@ -29,7 +29,9 @@ func NetworkDecode(air uint32, buf *bytes.Buffer, count int, oldFormat bool, r c
 		}
 
 		if index > maxIndex {
-			return nil, fmt.Errorf("sub chunk index %d greater than max %d", index, maxIndex)
+			// TODO: Temporary workaround for some JE->BE converted worlds.
+			//return nil, fmt.Errorf("sub chunk index %d greater than max %d", index, maxIndex)
+			continue
 		}
 		c.sub[index] = sub
 	}

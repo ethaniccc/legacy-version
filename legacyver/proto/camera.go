@@ -86,6 +86,8 @@ func (x *CameraPreset) FromLatest(cp protocol.CameraPreset) CameraPreset {
 	x.ViewOffset = cp.ViewOffset
 	x.EntityOffset = cp.EntityOffset
 	x.Radius = cp.Radius
+	x.MinYawLimit = cp.MinYawLimit
+	x.MaxYawLimit = cp.MaxYawLimit
 	x.AudioListener = cp.AudioListener
 	x.PlayerEffects = cp.PlayerEffects
 	x.AimAssist = cp.AimAssist

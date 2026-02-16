@@ -3,6 +3,7 @@ package proto
 import "github.com/sandertv/gophertunnel/minecraft/protocol"
 
 const (
+	ID924 = 924 // v1.26.0
 	ID898 = 898 // v1.21.130
 	ID860 = 860 // v1.21.124
 	ID859 = 859 // v1.21.120
@@ -38,6 +39,10 @@ func IsProtoLT(io protocol.IO, proto int32) bool {
 
 func IsProtoGT(io protocol.IO, proto int32) bool {
 	return io.(IO).ProtocolID() > proto
+}
+
+func IsProto(io protocol.IO, proto int32) bool {
+	return io.(IO).ProtocolID() == proto
 }
 
 func FetchProtoID(io protocol.IO) int32 {
