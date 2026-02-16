@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"sort"
 
-	"github.com/akmalfairuz/legacy-version/internal"
+	"github.com/ethaniccc/legacy-version/internal"
 
 	"github.com/df-mc/worldupgrader/blockupgrader"
 	"github.com/sandertv/gophertunnel/minecraft/nbt"

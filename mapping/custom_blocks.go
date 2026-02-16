@@ -1,8 +1,8 @@
 package mapping
 
 import (
-	"github.com/akmalfairuz/legacy-version/internal"
 	"github.com/df-mc/worldupgrader/blockupgrader"
+	"github.com/ethaniccc/legacy-version/internal"
 	"github.com/sandertv/gophertunnel/minecraft/protocol"
 	"golang.org/x/exp/maps"
 )

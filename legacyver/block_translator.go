@@ -4,11 +4,11 @@ import (
 	"bytes"
 	_ "embed"
 
-	"github.com/akmalfairuz/legacy-version/internal/chunk"
-	"github.com/akmalfairuz/legacy-version/mapping"
 	"github.com/cespare/xxhash/v2"
 	"github.com/df-mc/dragonfly/server/block/cube"
 	"github.com/df-mc/dragonfly/server/world"
+	"github.com/ethaniccc/legacy-version/internal/chunk"
+	"github.com/ethaniccc/legacy-version/mapping"
 	"github.com/hashicorp/go-version"
 	"github.com/sandertv/gophertunnel/minecraft"
 	"github.com/sandertv/gophertunnel/minecraft/nbt"

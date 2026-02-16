@@ -4,8 +4,8 @@ import (
 	"bytes"
 	"sync"
 
-	"github.com/akmalfairuz/legacy-version/mapping"
 	"github.com/df-mc/dragonfly/server/block/cube"
+	"github.com/ethaniccc/legacy-version/mapping"
 )
 
 // pool is used to pool byte buffers used for encoding chunks.

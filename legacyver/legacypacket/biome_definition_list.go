@@ -3,7 +3,7 @@ package legacypacket
 import (
 	"encoding/base64"
 
-	"github.com/akmalfairuz/legacy-version/legacyver/proto"
+	"github.com/ethaniccc/legacy-version/legacyver/proto"
 	"github.com/samber/lo"
 	"github.com/sandertv/gophertunnel/minecraft/protocol"
 	"github.com/sandertv/gophertunnel/minecraft/protocol/packet"

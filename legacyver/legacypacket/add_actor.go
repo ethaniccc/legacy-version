@@ -1,7 +1,7 @@
 package legacypacket
 
 import (
-	"github.com/akmalfairuz/legacy-version/legacyver/proto"
+	"github.com/ethaniccc/legacy-version/legacyver/proto"
 	"github.com/go-gl/mathgl/mgl32"
 	"github.com/sandertv/gophertunnel/minecraft/protocol"
 	"github.com/sandertv/gophertunnel/minecraft/protocol/packet"

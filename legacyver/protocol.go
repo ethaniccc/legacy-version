@@ -3,8 +3,8 @@ package legacyver
 import (
 	"strings"
 
-	"github.com/akmalfairuz/legacy-version/legacyver/legacypacket"
-	"github.com/akmalfairuz/legacy-version/legacyver/proto"
+	"github.com/ethaniccc/legacy-version/legacyver/legacypacket"
+	"github.com/ethaniccc/legacy-version/legacyver/proto"
 	"github.com/samber/lo"
 	"github.com/sandertv/gophertunnel/minecraft"
 	"github.com/sandertv/gophertunnel/minecraft/protocol"

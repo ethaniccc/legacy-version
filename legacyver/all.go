@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/akmalfairuz/legacy-version/internal/chunk"
-	"github.com/akmalfairuz/legacy-version/mapping"
+	"github.com/ethaniccc/legacy-version/internal/chunk"
+	"github.com/ethaniccc/legacy-version/mapping"
 	"github.com/sandertv/gophertunnel/minecraft"
 	"github.com/sandertv/gophertunnel/minecraft/protocol/packet"
 )

@@ -3,8 +3,8 @@ package legacypacket
 import (
 	"fmt"
 	"strings"
-
-	"github.com/akmalfairuz/legacy-version/legacyver/proto"
+  
+	"github.com/ethaniccc/legacy-version/legacyver/proto"
 	"github.com/sandertv/gophertunnel/minecraft/protocol"
 	"github.com/sandertv/gophertunnel/minecraft/protocol/packet"
 )
