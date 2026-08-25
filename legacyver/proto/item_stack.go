@@ -109,8 +109,21 @@ func MarshalStackResponseSlotInfo(r protocol.IO, x *protocol.StackResponseSlotIn
 		r.InvalidValue(x.HotbarSlot, "hotbar slot", "hot bar slot must be equal to normal slot")
 	}
 	r.String(&x.CustomName)
-	if IsProtoGTE(r, ID766) {
-		r.String(&x.FilteredCustomName)
+	if IsProtoGTE(r, ID2168) {
+		// The oomph gophertunnel fork encodes FilteredCustomName as an
+		// optional string at 2168.
+		protocol.OptionalFunc(r, &x.FilteredCustomName, r.String)
+	} else if IsProtoGTE(r, ID766) {
+		// Older protocols always encode a plain string.
+		filtered, _ := x.FilteredCustomName.Value()
+		r.String(&filtered)
+		if IsReader(r) {
+			if filtered != "" {
+				x.FilteredCustomName = protocol.Option(filtered)
+			} else {
+				x.FilteredCustomName = protocol.Optional[string]{}
+			}
+		}
 	}
 	r.Varint32(&x.DurabilityCorrection)
 	if IsProtoGTE(r, ID2168) && (x.DurabilityCorrection < -32768 || x.DurabilityCorrection > 32767) {
