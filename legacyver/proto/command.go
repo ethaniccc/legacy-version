@@ -38,79 +38,20 @@ func MarshalCommandOverload(r protocol.IO, x *protocol.CommandOverload) {
 
 func MarshalCommandParameter(r protocol.IO, x *protocol.CommandParameter) {
 	r.String(&x.Name)
-	if IsProtoGTE(r, ID2168) {
-		r.Uint32(&x.Type)
-	} else if IsProtoGTE(r, ID1001) {
-		legacyType := x.Type
-		if IsReader(r) {
-			r.Uint32(&legacyType)
-			if legacyType&0xfffff == 2 {
-				x.Type = legacyType&^0xfffff | protocol.CommandArgTypeFloat
-			} else {
-				x.Type = legacyType
-			}
-		} else {
-			if legacyType&0xfffff == protocol.CommandArgTypeFloat {
-				legacyType = legacyType&^0xfffff | 2
-			}
-			r.Uint32(&legacyType)
-		}
-	} else if IsReader(r) {
-		var legacyType uint32
-		r.Uint32(&legacyType)
-		if legacyType&protocol.CommandArgValid != 0 {
-			x.Type = commandArgumentTypeFromLegacy(r, legacyType)
-		} else {
-			x.Type = legacyType
-		}
-	} else {
-		legacyType := x.Type
-		if x.Type&protocol.CommandArgValid != 0 {
-			legacyType = commandArgumentTypeToLegacy(r, x.Type)
-		}
-		r.Uint32(&legacyType)
-	}
+	// Type is written as is for every protocol. The argument type numbering
+	// did not change between 1.26.0 and 1.26.44: the gophertunnel constants
+	// at protocol 2168 (Int=1, Float=3, RValue=4, ... Command=87) are the
+	// wire values older clients use too. gophertunnel briefly renumbered its
+	// constants for 1.26.30 and reverted that in #466, and the translation
+	// that used to live here was written against the renumbered set.
+	//
+	// The low 20 bits are only an argument type for basic parameters. For a
+	// parameter with CommandArgEnum, CommandArgSoftEnum or CommandArgSuffixed
+	// they hold an index into the Enums, DynamicEnums or Suffixes table of
+	// the packet, so any translation of the value breaks those parameters.
+	r.Uint32(&x.Type)
 	r.Bool(&x.Optional)
 	r.Uint8(&x.Options)
-}
-
-func commandArgumentTypeToLegacy(r protocol.IO, argumentType uint32) uint32 {
-	flags, base := argumentType&^0xfffff, argumentType&0xfffff
-	switch base {
-	case protocol.CommandArgTypeInt:
-		return flags | 1
-	case protocol.CommandArgTypeFloat:
-		return flags | 3
-	case protocol.CommandArgTypeRValue:
-		return flags | 4
-	case protocol.CommandArgTypeWildcardInt, protocol.CommandArgTypeOperator, protocol.CommandArgTypeCompareOperator,
-		protocol.CommandArgTypeTarget, protocol.CommandArgTypeWildcardTarget, protocol.CommandArgTypeFilepath,
-		protocol.CommandArgTypeIntegerRange, protocol.CommandArgTypeEquipmentSlots, protocol.CommandArgTypeString,
-		protocol.CommandArgTypeBlockPosition, protocol.CommandArgTypePosition, protocol.CommandArgTypeMessage,
-		protocol.CommandArgTypeRawText, protocol.CommandArgTypeJSON, protocol.CommandArgTypeBlockStates,
-		protocol.CommandArgTypeCommand:
-		return flags | base
-	default:
-		r.UnknownEnumOption(base, "legacy command argument type")
-		return flags
-	}
-}
-
-func commandArgumentTypeFromLegacy(r protocol.IO, argumentType uint32) uint32 {
-	flags, base := argumentType&^0xfffff, argumentType&0xfffff
-	switch base {
-	case 1:
-		return flags | protocol.CommandArgTypeInt
-	case 3:
-		return flags | protocol.CommandArgTypeFloat
-	case 4:
-		return flags | protocol.CommandArgTypeRValue
-	case 5, 6, 7, 8, 10, 17, 23, 47, 56, 64, 65, 67, 70, 74, 83, 87:
-		return flags | base
-	default:
-		r.UnknownEnumOption(base, "legacy command argument type")
-		return flags
-	}
 }
 
 // CommandEnumContext holds context required for encoding command enums.

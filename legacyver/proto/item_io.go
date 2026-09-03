@@ -247,7 +247,9 @@ func readLegacyItemUserData(r *Reader, x *protocol.ItemStack) {
 		x.NBTData, x.CanBePlacedOn, x.CanBreak, x.BlockingTick = nil, nil, nil, 0
 		return
 	}
-	buf := protocol.NewReader(bytes.NewReader(extra), r.shieldID, r.limits)
+	// protocol.NewReader in the oomph gophertunnel fork asserts a
+	// *bytes.Buffer, a *bytes.Reader panics.
+	buf := protocol.NewReader(bytes.NewBuffer(extra), r.shieldID, r.limits)
 	var length int16
 	buf.Int16(&length)
 	if length == -1 {

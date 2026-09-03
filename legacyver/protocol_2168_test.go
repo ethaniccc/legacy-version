@@ -339,8 +339,8 @@ func normaliseCurrentCraftingData(pk *packet.CraftingData) {
 	for i := range pk.ShapelessRecipes {
 		pk.ShapelessRecipes[i].Input = []protocol.ItemDescriptorCount{descriptor()}
 	}
-	for i := range pk.ShulkerBoxRecipes {
-		pk.ShulkerBoxRecipes[i].Input = []protocol.ItemDescriptorCount{descriptor()}
+	for i := range pk.UserDataShapelessRecipes {
+		pk.UserDataShapelessRecipes[i].Input = []protocol.ItemDescriptorCount{descriptor()}
 	}
 	for i := range pk.ShapelessChemistryRecipes {
 		pk.ShapelessChemistryRecipes[i].Input = []protocol.ItemDescriptorCount{descriptor()}

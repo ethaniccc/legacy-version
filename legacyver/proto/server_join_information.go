@@ -46,7 +46,10 @@ func MarshalGatheringJoinInfo(r protocol.IO, x *protocol.GatheringJoinInfo) {
 		targetID, _ := x.TargetID.Value()
 		r.UUID(&targetID)
 		x.TargetID = protocol.Option(targetID)
-		if IsProtoLT(r, ID975) {
+		// ScenarioID became a string in 1.26.20 (proto 975). In this
+		// environment the protocol-944 client (game 1.26.13) already ships
+		// the 1.26.20 GatheringJoinInfo, so the string form applies from 944.
+		if IsProtoLT(r, ID944) {
 			scenarioID, _ := x.ScenarioID.Value()
 			sid, _ := uuid.Parse(scenarioID)
 			r.UUID(&sid)
