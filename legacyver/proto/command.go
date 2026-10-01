@@ -91,8 +91,7 @@ func commandArgumentTypeToLegacy(r protocol.IO, argumentType uint32) uint32 {
 		protocol.CommandArgTypeCommand:
 		return flags | base
 	default:
-		r.UnknownEnumOption(base, "legacy command argument type")
-		return flags
+		return flags | base
 	}
 }
 
@@ -108,8 +107,7 @@ func commandArgumentTypeFromLegacy(r protocol.IO, argumentType uint32) uint32 {
 	case 5, 6, 7, 8, 10, 17, 23, 47, 56, 64, 65, 67, 70, 74, 83, 87:
 		return flags | base
 	default:
-		r.UnknownEnumOption(base, "legacy command argument type")
-		return flags
+		return flags | base
 	}
 }
 
